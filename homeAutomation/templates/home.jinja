@@ -1,0 +1,127 @@
+{% extends "_main.jinja" %}
+{% block title %} Home page {% endblock %}
+{% block main %}
+<div class="row">
+    <div class="card card-1 col-md-6 text-md-center">
+        <div class="cart-body">
+            <h3 class="card-title text-md-center">Bedroom</h3>
+            <table class="tabble-custom text-md-center">
+                <tr>
+                    <td>Svetlo č.1</td>
+                    <td><input type="button" name="B_Light1" value="ON" class="button_cp"
+                               onclick="doRequest('/control?B_Light1=ON')"></td>
+                    <td><input type="button" name="B_Light1" value="OFF" class="button_cp"
+                               onclick="doRequest('/control?B_Light1=OFF')"></td>
+                </tr>
+                <tr>
+                    <td>Svetlo č.2</td>
+                    <td><input type="button" name="B_Light2" value="ON" class="button_cp"
+                               onclick="doRequest('/control?B_Light2=ON')"></td>
+                    <td><input type="button" name="B_Light2" value="OFF" class="button_cp"
+                               onclick="doRequest('/control?B_Light2=OFF')"></td>
+                </tr>
+                <tr>
+                    <td>Všetky svetlá</td>
+                    <td><input type="button" name="AllBedroomLights" value="ON" class="button_cp"
+                               onclick="doRequest('/control?AllBedroomLights=ON')"></td>
+                    <td><input type="button" name="AllBedroomLights" value="OFF" class="button_cp"
+                               onclick="doRequest('/control?AllBedroomLights=OFF')"></td>
+                </tr>
+                <tr>
+                    <td colspan=3><b>Žalúzie</b></td>
+                </tr>
+                <tr>
+                    <td colspan=3><input type="range" name=zaluzie1 min="0" max="100" step="10" value="0"
+                                         onmouseup=sendRequestLeftBlind(value)>
+                        <output for=zaluzie1 id=volume1></output>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=3><input type="range" name=zaluzie2 min="0" max="100" step="10" value="0"
+                                         onmouseup=sendRequestRightBlind(value)>
+                        <output for=zaluzie2 id=volume2></output>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=3>
+                        <input type="button" name="BlindsBedroom" value="OPEN" class="button_cp"
+                               onclick="doRequest('/control?BlindsBedroom=OPEN')">
+                        <input type="button" name="BlindsBedroom" value="CLOSE LIGHT" class="button_cp"
+                               onclick="doRequest('/control?BlindsBedroom=CLOSE_LIGHT')">
+                        <input type="button" name="BlindsBedroom" value="CLOSE NIGHT" class="button_cp"
+                               onclick="doRequest('/control?BlindsBedroom=CLOSE_NIGHT')">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=3>
+                        <input type="button" name="BlindsBedroom" value="ROLL UP" class="button_up"
+                               onclick="doRequest('/control?BlindsBedroom=ROLL_UP')">
+                        <input type="button" name="BlindsBedroom" value="ROLL DOWN" class="button_up"
+                               onclick="doRequest('/control?BlindsBedroom=ROLL_DOWN')">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="card card-1 col-md-6 text-md-center">
+        <div class="cart-body">
+            <h3 class="card-title text-md-center">Living room</h3>
+            <table class="tabble-custom text-md-center">
+                <tr>
+                    <td>Svetlo č.1</td>
+                    <td><input type="button" name="L_Light1" value="ON" class="button_cp"
+                               onclick="doRequest('/control?L_Light1=ON')"></td>
+                    <td><input type="button" name="L_Light3" value="OFF" class="button_cp"
+                               onclick="doRequest('/control?L_Light1=OFF')"></td>
+                </tr>
+                <tr>
+                    <td>Svetlo č.2</td>
+                    <td><input type="button" name="L_Light2" value="ON" class="button_cp"
+                               onclick="doRequest('/control?L_Light2=ON')"></td>
+                    <td><input type="button" name="L_Light2" value="OFF" class="button_cp"
+                               onclick="doRequest('/control?L_Light2=OFF')"></td>
+                </tr>
+                <tr>
+                    <td>Svetlo č.3</td>
+                    <td><input type="button" name="L_Light3" value="ON" class="button_cp"
+                               onclick="doRequest('/control?L_Light3=ON')"></td>
+                    <td><input type="button" name="L_Light3" value="OFF" class="button_cp"
+                               onclick="doRequest('/control?L_Light3=OFF')"></td>
+                </tr>
+                <tr>
+                    <td>Svetlo č.4</td>
+                    <td><input type="button" name="L_Light4" value="ON" class="button_cp"
+                               onclick="doRequest('/control?L_Light4=ON')"></td>
+                    <td><input type="button" name="L_Light4" value="OFF" class="button_cp"
+                               onclick="doRequest('/control?L_Light4=OFF')"></td>
+                </tr>
+                <tr>
+                    <td>Všetky svetlá</td>
+                    <td><input type="button" name="AllLivingRoomLights" value="ON" class="button_cp"
+                               onclick="doRequest('/control?AllLivingRoomLights=ON')"></td>
+                    <td><input type="button" name="AllLivingRoomLights" value="OFF" class="button_cp"
+                               onclick="doRequest('/control?AllLivingRoomLights=OFF')"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="card card-1 col-md-6 text-md-center">
+        <div class="cart-body">
+            <h3 class="card-title text-md-center">Garden</h3>
+            <table class="tabble-custom text-md-center">
+                <tr>
+                    <td>Svetlo č.1</td>
+                    <td><input type="button" name="L_Light1" value="ON" class="button_cp"
+                               onclick="doRequest('/control?L_Light1=ON')"></td>
+                    <td><input type="button" name="G_Light1" value="OFF" class="button_cp"
+                               onclick="doRequest('/control?G_Light1=OFF')"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+    {% endblock %}

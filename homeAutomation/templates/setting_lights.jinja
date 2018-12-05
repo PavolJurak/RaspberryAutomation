@@ -1,0 +1,51 @@
+{% extends "_main.jinja" %}
+{% block title%} Setting lights {% endblock %}
+{% block main %}
+<div class="row">
+    <div class="card card-1 col-md-6 text-md-center" id="card1">
+        <div class="card-body">
+            <h3 class="card-title">Setting light</h3>
+            <table class="tabble-custom">
+                <tr>
+                    <td colspan="2"><b>Radio code transmitter</b></td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="code" name="radio_code" id="radio_code"></td>
+                    <td><input type="button" name="submit_code" value="submit" onclick="doRequest()"></td>
+                </tr>
+            </table>
+            <div id="manual">
+                <h4 class="card-title">Smart Switch - remote control pairing</h4>
+                <div class="manual-title text-md-left">
+                    1. How to use a button to turn it ON & OFF?
+                </div>
+                <div class="manual-description text-md-left">
+                    Press the touch button for few seconds when rings one beep and
+                    then press remote any key, power ON and OFF control can be realized.
+                </div>
+                <div class="manual-title text-md-left">
+                    2. How to use a button to turn it ON?
+                </div>
+                <div class="manual-description text-md-left">
+                    Press the touch button for few seconds when rings two beeps, and
+                    then press remote any key, power ON control can be realized.
+                </div>
+                <div class="manual-title text-md-left">
+                    3. How to use a button to turn it OFF?
+                </div>
+                <div class="manual-description text-md-left">
+                    Press the touch button for few seconds when rings three beeps, and
+                    then press remote any key, power ON control can be realized.
+                </div>
+                <div class="manual-title text-md-left">
+                    4. How clean up the code?
+                </div>
+                <div class="manual-description text-md-left">
+                    Press the touch button for few seconds when rings four beeps.
+                    The code will be cleared.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

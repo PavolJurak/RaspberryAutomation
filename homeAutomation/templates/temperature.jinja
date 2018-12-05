@@ -1,0 +1,29 @@
+{% extends '_main.jinja' %}
+{% block title %} Temperature and humidity {% endblock %}
+{% block main %}
+<div class="row">
+    <div class="card card-1 col-md-6 text-md-center">
+        <div class="cart-body">
+            <h3 class="card-title text-md-center">Temperature and humidity from DHT22</h3>
+            <table class="tabble-custom text-md-left">
+                <tr>
+                    <td>Temperature:</td>
+                    <td>20 C</td>
+                </tr>
+                <tr>
+                    <td>Humidity:</td>
+                    <td>55%</td>
+                </tr>
+            </table>
+            <h4 class="card-title">Graph temperature in 24 hours</h4>
+            <div class="thumbnail">
+                <img class="img-fluid" src="{{ url_for('static',filename='graph/graph.png') }}"/>
+            </div>
+            <h4 class="card-title">Graph humidity in 24 hours</h4>
+            <div class="thumbnail">
+                <img class="img-fluid" src="{{ url_for('static',filename='graph/graph.png') }}"/>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

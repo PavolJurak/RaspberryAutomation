@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> {% block title %} {% endblock %} </title>
+    {% include "_head.jinja" %}
+    <script type="text/javascript" src="{{ url_for('static',filename='jss/custom.jss') }}"></script>
+</head>
+<body>
+     <header>
+        {% include "_nav.jinja" %}
+    </header>
+    <main>
+        {% block main %} {% endblock %}
+    </main>
+</body>
+{% include "_footer.jinja" %}
+</html>
