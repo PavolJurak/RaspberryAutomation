@@ -11,7 +11,7 @@
                 </tr>
                 <tr>
                     <td><input type="text" placeholder="code" name="radio_code" id="radio_code"></td>
-                    <td><input type="button" name="submit_code" value="submit" onclick="doRequest()"></td>
+                    <td><input type="button" name="submit_code" value="submit" onclick="doRequest('/setlight?radio_code='+document.getElementById('radio_code').value)"></td>
                 </tr>
             </table>
             <div id="manual">

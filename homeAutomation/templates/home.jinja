@@ -9,23 +9,23 @@
                 <tr>
                     <td>Svetlo č.1</td>
                     <td><input type="button" name="B_Light1" value="ON" class="button_cp"
-                               onclick="doRequest('/control?B_Light1=ON')"></td>
+                               onclick="doRequest('/control_light?B_Light1=ON')"></td>
                     <td><input type="button" name="B_Light1" value="OFF" class="button_cp"
-                               onclick="doRequest('/control?B_Light1=OFF')"></td>
+                               onclick="doRequest('/control_light?B_Light1=OFF')"></td>
                 </tr>
                 <tr>
                     <td>Svetlo č.2</td>
                     <td><input type="button" name="B_Light2" value="ON" class="button_cp"
-                               onclick="doRequest('/control?B_Light2=ON')"></td>
+                               onclick="doRequest('/control_light?B_Light2=ON')"></td>
                     <td><input type="button" name="B_Light2" value="OFF" class="button_cp"
-                               onclick="doRequest('/control?B_Light2=OFF')"></td>
+                               onclick="doRequest('/control_light?B_Light2=OFF')"></td>
                 </tr>
                 <tr>
                     <td>Všetky svetlá</td>
                     <td><input type="button" name="AllBedroomLights" value="ON" class="button_cp"
-                               onclick="doRequest('/control?AllBedroomLights=ON')"></td>
+                               onclick="doRequest('/control_light?AllBedroomLights=ON')"></td>
                     <td><input type="button" name="AllBedroomLights" value="OFF" class="button_cp"
-                               onclick="doRequest('/control?AllBedroomLights=OFF')"></td>
+                               onclick="doRequest('/control_light?AllBedroomLights=OFF')"></td>
                 </tr>
                 <tr>
                     <td colspan=3><b>Žalúzie</b></td>
@@ -45,19 +45,19 @@
                 <tr>
                     <td colspan=3>
                         <input type="button" name="BlindsBedroom" value="OPEN" class="button_cp"
-                               onclick="doRequest('/control?BlindsBedroom=OPEN')">
+                               onclick="doRequest('/control_light?BlindsBedroom=OPEN')">
                         <input type="button" name="BlindsBedroom" value="CLOSE LIGHT" class="button_cp"
-                               onclick="doRequest('/control?BlindsBedroom=CLOSE_LIGHT')">
+                               onclick="doRequest('/control_light?BlindsBedroom=CLOSE_LIGHT')">
                         <input type="button" name="BlindsBedroom" value="CLOSE NIGHT" class="button_cp"
-                               onclick="doRequest('/control?BlindsBedroom=CLOSE_NIGHT')">
+                               onclick="doRequest('/control_light?BlindsBedroom=CLOSE_NIGHT')">
                     </td>
                 </tr>
                 <tr>
                     <td colspan=3>
                         <input type="button" name="BlindsBedroom" value="ROLL UP" class="button_up"
-                               onclick="doRequest('/control?BlindsBedroom=ROLL_UP')">
+                               onclick="doRequest('/control_light?BlindsBedroom=ROLL_UP')">
                         <input type="button" name="BlindsBedroom" value="ROLL DOWN" class="button_up"
-                               onclick="doRequest('/control?BlindsBedroom=ROLL_DOWN')">
+                               onclick="doRequest('/control_light?BlindsBedroom=ROLL_DOWN')">
                     </td>
                 </tr>
             </table>
@@ -72,37 +72,37 @@
                 <tr>
                     <td>Svetlo č.1</td>
                     <td><input type="button" name="L_Light1" value="ON" class="button_cp"
-                               onclick="doRequest('/control?L_Light1=ON')"></td>
+                               onclick="doRequest('/control_light?L_Light1=ON')"></td>
                     <td><input type="button" name="L_Light3" value="OFF" class="button_cp"
-                               onclick="doRequest('/control?L_Light1=OFF')"></td>
+                               onclick="doRequest('/control_light?L_Light1=OFF')"></td>
                 </tr>
                 <tr>
                     <td>Svetlo č.2</td>
                     <td><input type="button" name="L_Light2" value="ON" class="button_cp"
-                               onclick="doRequest('/control?L_Light2=ON')"></td>
+                               onclick="doRequest('/control_light?L_Light2=ON')"></td>
                     <td><input type="button" name="L_Light2" value="OFF" class="button_cp"
-                               onclick="doRequest('/control?L_Light2=OFF')"></td>
+                               onclick="doRequest('/control_light?L_Light2=OFF')"></td>
                 </tr>
                 <tr>
                     <td>Svetlo č.3</td>
                     <td><input type="button" name="L_Light3" value="ON" class="button_cp"
-                               onclick="doRequest('/control?L_Light3=ON')"></td>
+                               onclick="doRequest('/control_light?L_Light3=ON')"></td>
                     <td><input type="button" name="L_Light3" value="OFF" class="button_cp"
-                               onclick="doRequest('/control?L_Light3=OFF')"></td>
+                               onclick="doRequest('/control_light?L_Light3=OFF')"></td>
                 </tr>
                 <tr>
                     <td>Svetlo č.4</td>
                     <td><input type="button" name="L_Light4" value="ON" class="button_cp"
-                               onclick="doRequest('/control?L_Light4=ON')"></td>
+                               onclick="doRequest('/control_light?L_Light4=ON')"></td>
                     <td><input type="button" name="L_Light4" value="OFF" class="button_cp"
-                               onclick="doRequest('/control?L_Light4=OFF')"></td>
+                               onclick="doRequest('/control_light?L_Light4=OFF')"></td>
                 </tr>
                 <tr>
                     <td>Všetky svetlá</td>
                     <td><input type="button" name="AllLivingRoomLights" value="ON" class="button_cp"
-                               onclick="doRequest('/control?AllLivingRoomLights=ON')"></td>
+                               onclick="doRequest('/control_light?AllLivingRoomLights=ON')"></td>
                     <td><input type="button" name="AllLivingRoomLights" value="OFF" class="button_cp"
-                               onclick="doRequest('/control?AllLivingRoomLights=OFF')"></td>
+                               onclick="doRequest('/control_light?AllLivingRoomLights=OFF')"></td>
                 </tr>
             </table>
         </div>
@@ -115,10 +115,10 @@
             <table class="tabble-custom text-md-center">
                 <tr>
                     <td>Svetlo č.1</td>
-                    <td><input type="button" name="L_Light1" value="ON" class="button_cp"
-                               onclick="doRequest('/control?L_Light1=ON')"></td>
-                    <td><input type="button" name="G_Light1" value="OFF" class="button_cp"
-                               onclick="doRequest('/control?G_Light1=OFF')"></td>
+                    <td><input type="button" name="Garden" value="ON" class="button_cp"
+                               onclick="doRequest('/control_light?Garden=ON')"></td>
+                    <td><input type="button" name="Garden" value="OFF" class="button_cp"
+                               onclick="doRequest('/control_light?Garden=OFF')"></td>
                 </tr>
             </table>
         </div>
