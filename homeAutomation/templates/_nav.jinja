@@ -1,22 +1,19 @@
+{% set navigation_bar = [
+    ('index', 'Home'),
+    ('led_control', 'Led Lamp'),
+    ('temperature', 'Temperature and humidity'),
+    ('set_lights', 'Setting lights'),
+    ('set_blinds', 'Calibration blinds'),
+    ('admin', 'Admin')
+] -%}
+
 <nav class="navbar-custom">
     <ul class="nav nav-pills justify-content-center" id="myTab">
-        <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="led">Led lamp</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('temperature') }}">Temperature and humidity</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="setlight">Setting lights</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="setblind">Calibration blinds</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="admin">Admin</a>
-        </li>
+        {% for href, caption in navigation_bar %}
+            <li class="nav-item {% if url_for(request.endpoint) == url_for(href) %} active-custom {% endif %}">
+                <a class="nav-link" href="{{ url_for(href) }}"> {{ caption }} </a>
+            </li>
+        {% endfor %}
     </ul>
 </nav>
+

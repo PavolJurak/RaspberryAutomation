@@ -1,6 +1,8 @@
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from flask import render_template, url_for, request
 #from rpi_rf import RFDevice
+#import Adafruit_DHT as dht
 from help.graph_generator import GraphTemp
 
 command_codes = {'B_Light1': {'ON': '5393', 'OFF': '5293'},
@@ -25,12 +27,20 @@ def send_rf_code(code):
     rfdevice.enable_tx()
     rfdevice.tx_code(code,1,350)
     """
+
+g = GraphTemp()
 app = Flask(__name__)
 
 @app.route("/")
 @app.route("/home")
 def index():
     return render_template('home.jinja')
+
+
+@app.route("/led")
+def led_control():
+    return render_template('led_control.jinja')
+
 
 @app.route("/control_light", methods=['GET'])
 def control_light():
@@ -40,19 +50,10 @@ def control_light():
                 if request.args.get(light) == status:
                     print('Svetlo: ', light, 'code:',rf_code)
                     #send_rf_code(int(rf_code))
-    return ''
-
-@app.route('/led')
-def led_lamp():
-    return render_template('home.jinja')
-
-@app.route('/temperature')
-def temperature():
-    g = GraphTemp()
-    g.create()
     return render_template('temperature.jinja')
 
-@app.route("/setlight",methods=['GET'])
+
+@app.route('/setlight', methods=['GET'])
 def set_lights():
     if request.args.get('radio_code') is not None:
         rf_code = request.args.get('radio_code')
@@ -61,6 +62,26 @@ def set_lights():
     else:
         return render_template('setting_lights.jinja')
 
+
+@app.route('/temperature')
+def temperature():
+    g.create()
+    h, t = ('20','50')
+    print(h,t)
+    """
+    h,t = dht.read_retry(dht.DHT22,4)
+    h = '{0:0.1f}*C'.format(h)
+    t = '{0:0.1f}*C'.format(t)
+    """
+    return render_template('temperature.jinja',temp=t, hum=h)
+
+@app.route('/setblind', methods=['GET','POST'])
+def set_blinds():
+    return render_template('blind_control.jinja')
+
+@app.route('/admin', methods=['GET','POST'])
+def admin():
+    return render_template('admin.jinja')
 
 if __name__ == "__main__":
     app.run(debug=True)
