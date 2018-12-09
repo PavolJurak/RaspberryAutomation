@@ -1,18 +1,21 @@
 import matplotlib.pyplot as plt
+import random
 
 class GraphTemp:
     def __init__(self, start_time=None, end_time=None):
         self._start_time = start_time
         self._end_time = end_time
+        self.x = []
+        self.y = []
 
-    def create(self):
+    def create(self, x, y):
         # x axis values
-        x = [1, 2, 3]
+        self.x = x
         # corresponding y axis values
-        y = [2, 4, 1]
+        self.y = y
 
         # plotting the points
-        plt.plot(x, y)
+        plt.plot(self.x, self.y)
 
         # naming the x axis
         plt.xlabel('x - axis')
@@ -20,9 +23,10 @@ class GraphTemp:
         plt.ylabel('y - axis')
 
         # giving a title to my graph
-        plt.title('My first graph!')
+        plt.title('Graph of temperature!')
 
         # function to show the plot
         # plt.show()
-        plt.savefig('graph.png', bbox_inches='tight')
-
+        graph_name = 'temp_graph'+str(random.randint(1,50000))+'.png'
+        plt.savefig('static/graph/'+graph_name, bbox_inches='tight')
+        return graph_name

@@ -3,7 +3,8 @@ from flask import Flask
 from flask import render_template, url_for, request
 #from rpi_rf import RFDevice
 #import Adafruit_DHT as dht
-from help.graph_generator import GraphTemp
+from homeAutomation.help.graph_generator import GraphTemp
+import datetime
 
 command_codes = {'B_Light1': {'ON': '5393', 'OFF': '5293'},
                 'B_Light2': {'ON': '5193', 'OFF': '5093'},
@@ -30,6 +31,31 @@ def send_rf_code(code):
 
 g = GraphTemp()
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+db = SQLAlchemy(app)
+
+class sensors(db.Model):
+    id = db.Column('id', db.Integer, primary_key = True)
+    date = db.Column('date', db.DateTime, default=datetime.datetime.now)
+    temp = db.Column(db.String(4), nullable=False)
+    hum = db.Column(db.String(4), nullable=False)
+
+    def __init__(self, date, temp, hum):
+        self.date = date
+        self.temp = temp
+        self.hum = hum
+
+    def get_temperature(self):
+        return self.temp
+
+    def get_humudity(self):
+        return self.hum
+
+    def get_time(self):
+        return str(self.date)
+db.create_all()
+
+
 
 @app.route("/")
 @app.route("/home")
@@ -65,15 +91,19 @@ def set_lights():
 
 @app.route('/temperature')
 def temperature():
-    g.create()
-    h, t = ('20','50')
-    print(h,t)
+    temp = [temp.get_temperature() for temp in sensors.query.all()]
+    time = [time.get_time() for time in sensors.query.all()]
+
+    name = g.create(time, temp)
+    print(temp)
+    print(time)
+    t, h = ('10','40')
     """
     h,t = dht.read_retry(dht.DHT22,4)
     h = '{0:0.1f}*C'.format(h)
     t = '{0:0.1f}*C'.format(t)
     """
-    return render_template('temperature.jinja',temp=t, hum=h)
+    return render_template('temperature.jinja',temp=t, hum=h, graph_name=name)
 
 @app.route('/setblind', methods=['GET','POST'])
 def set_blinds():
