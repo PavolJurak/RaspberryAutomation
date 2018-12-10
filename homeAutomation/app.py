@@ -1,10 +1,10 @@
-from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
 from flask import render_template, url_for, request
-#from rpi_rf import RFDevice
-#import Adafruit_DHT as dht
+from homeAutomation import app
 from homeAutomation.help.graph_generator import GraphTemp
-import datetime
+from homeAutomation import session
+from homeAutomation.models import SensorsData
+from homeAutomation.help.help import clear_graph_files
+from datetime import datetime
 
 command_codes = {'B_Light1': {'ON': '5393', 'OFF': '5293'},
                 'B_Light2': {'ON': '5193', 'OFF': '5093'},
@@ -28,34 +28,6 @@ def send_rf_code(code):
     rfdevice.enable_tx()
     rfdevice.tx_code(code,1,350)
     """
-
-g = GraphTemp()
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-db = SQLAlchemy(app)
-
-class sensors(db.Model):
-    id = db.Column('id', db.Integer, primary_key = True)
-    date = db.Column('date', db.DateTime, default=datetime.datetime.now)
-    temp = db.Column(db.String(4), nullable=False)
-    hum = db.Column(db.String(4), nullable=False)
-
-    def __init__(self, date, temp, hum):
-        self.date = date
-        self.temp = temp
-        self.hum = hum
-
-    def get_temperature(self):
-        return self.temp
-
-    def get_humudity(self):
-        return self.hum
-
-    def get_time(self):
-        return str(self.date)
-db.create_all()
-
-
 
 @app.route("/")
 @app.route("/home")
@@ -91,27 +63,42 @@ def set_lights():
 
 @app.route('/temperature')
 def temperature():
-    temp = [temp.get_temperature() for temp in sensors.query.all()]
-    time = [time.get_time() for time in sensors.query.all()]
-
-    name = g.create(time, temp)
-    print(temp)
-    print(time)
+    temperature_file = ''
+    humidity_file = ''
+    clear_graph_files()
+    graph = GraphTemp()
+    now = datetime.now().strftime('%Y-%m-%d ')
+    start = datetime.now().strftime('%Y-%m-%d ') + '00:00:00'
+    end = now + '23:59:59'
+    values = session.query(SensorsData).filter(SensorsData.date >= start).all()
+    temp = [value.get_temperature() for value in values]
+    hum = [value.get_humidity() for value in values]
+    time = [value.get_time() for value in values]
+    print(temp, hum, time)
     t, h = ('10','40')
+    temperature_file = graph.createTemperature(time,temp)
+    humidity_file = graph.createHumidity(time,hum)
     """
     h,t = dht.read_retry(dht.DHT22,4)
     h = '{0:0.1f}*C'.format(h)
     t = '{0:0.1f}*C'.format(t)
     """
-    return render_template('temperature.jinja',temp=t, hum=h, graph_name=name)
+    return render_template('temperature.jinja',temp=t, hum=h, temperature_file=temperature_file, humidity_file=humidity_file)
+
 
 @app.route('/setblind', methods=['GET','POST'])
 def set_blinds():
     return render_template('blind_control.jinja')
 
+
 @app.route('/admin', methods=['GET','POST'])
 def admin():
     return render_template('admin.jinja')
+
+
+@app.teardown_appcontext
+def cleanup(resp_or_exc):
+    session.remove()
 
 if __name__ == "__main__":
     app.run(debug=True)
