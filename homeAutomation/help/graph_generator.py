@@ -13,9 +13,9 @@ class GraphTemp:
         plt.plot(self.x, self.y)
 
         # naming the x axis
-        plt.xlabel('x - Time')
+        plt.xlabel('Time')
         # naming the y axis
-        plt.ylabel('y - Temperature [C*]')
+        plt.ylabel('Temperature [C*]')
 
         # giving a title to my graph
         plt.title('Graph of temperature!')
@@ -37,9 +37,9 @@ class GraphTemp:
         plt.plot(self.x, self.y)
 
         # naming the x axis
-        plt.xlabel('x - Time')
+        plt.xlabel('Time')
         # naming the y axis
-        plt.ylabel('y - Humidity [%]')
+        plt.ylabel('Humidity [%]')
 
         # giving a title to my graph
         plt.title('Graph of humidity!')

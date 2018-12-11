@@ -4,7 +4,7 @@ from homeAutomation.help.graph_generator import GraphTemp
 from homeAutomation import session
 from homeAutomation.models import SensorsData
 from homeAutomation.help.help import clear_graph_files
-from datetime import datetime
+from datetime import datetime, timedelta
 
 command_codes = {'B_Light1': {'ON': '5393', 'OFF': '5293'},
                 'B_Light2': {'ON': '5193', 'OFF': '5093'},
@@ -67,9 +67,7 @@ def temperature():
     humidity_file = ''
     clear_graph_files()
     graph = GraphTemp()
-    now = datetime.now().strftime('%Y-%m-%d ')
-    start = datetime.now().strftime('%Y-%m-%d ') + '00:00:00'
-    end = now + '23:59:59'
+    start = datetime.now() - timedelta(days=1)
     values = session.query(SensorsData).filter(SensorsData.date >= start).all()
     temp = [value.get_temperature() for value in values]
     hum = [value.get_humidity() for value in values]

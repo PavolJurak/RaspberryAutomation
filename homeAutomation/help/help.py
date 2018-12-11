@@ -1,8 +1,7 @@
-import os
+from os import remove, path, getcwd
 import glob
 
 def clear_graph_files():
-    filelist = glob.glob(os.getcwd()+'\static\graph\*.png')
+    filelist = glob.glob(path.join(getcwd(),'static','graph','*.png'))
     for file in filelist:
-        print(file)
-        os.remove(file)
+        remove(file)
