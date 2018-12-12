@@ -1,9 +1,9 @@
+from flask import Flask
+from db import session
+from help.graph_generator import GraphTemp
 from flask import render_template, url_for, request
-from homeAutomation import app
-from homeAutomation.help.graph_generator import GraphTemp
-from homeAutomation import session
-from homeAutomation.models import SensorsData
-from homeAutomation.help.help import clear_graph_files
+from models import SensorsData
+from help.help import clear_graph_files
 from datetime import datetime, timedelta
 
 command_codes = {'B_Light1': {'ON': '5393', 'OFF': '5293'},
@@ -28,6 +28,8 @@ def send_rf_code(code):
     rfdevice.enable_tx()
     rfdevice.tx_code(code,1,350)
     """
+
+app = Flask(__name__)
 
 @app.route("/")
 @app.route("/home")
@@ -69,7 +71,7 @@ def temperature():
     graph = GraphTemp()
     start = datetime.now() - timedelta(days=1)
     values = session.query(SensorsData).filter(SensorsData.date >= start).all()
-    temp = [value.get_temperature() for value in values]
+    temp = [float(value.get_temperature()) for value in values]
     hum = [value.get_humidity() for value in values]
     time = [value.get_time() for value in values]
     print(temp, hum, time)

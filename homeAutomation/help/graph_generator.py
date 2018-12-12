@@ -18,11 +18,12 @@ class GraphTemp:
         plt.ylabel('Temperature [C*]')
 
         # giving a title to my graph
+        #plt.axis([None,None,0,100])
         plt.title('Graph of temperature!')
-
+        plt.gcf().autofmt_xdate()
         # function to show the plot
-        # plt.show()
-        file_name = 'temperature_graph'+str(random.randint(1,50000))+'.png'
+        #plt.show()
+        file_name = 'temperature_graph'+str(random.randint(1,500))+'.png'
         plt.savefig('static/graph/'+file_name, bbox_inches='tight')
         return file_name
 
@@ -43,9 +44,9 @@ class GraphTemp:
 
         # giving a title to my graph
         plt.title('Graph of humidity!')
-
+        #plt.gcf().autofmt_xdate()
         # function to show the plot
         # plt.show()
-        file_name = 'humidity_graph'+str(random.randint(1, 50000)) + '.png'
+        file_name = 'humidity_graph'+str(random.randint(1, 500)) + '.png'
         plt.savefig('static/graph/' + file_name, bbox_inches='tight')
         return file_name
