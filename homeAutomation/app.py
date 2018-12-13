@@ -69,10 +69,10 @@ def temperature():
     humidity_file = ''
     clear_graph_files()
     graph = GraphTemp()
-    start = datetime.now() - timedelta(days=1)
+    start = datetime.now() - timedelta(days=5)
     values = session.query(SensorsData).filter(SensorsData.date >= start).all()
     temp = [float(value.get_temperature()) for value in values]
-    hum = [value.get_humidity() for value in values]
+    hum = [float(value.get_humidity()) for value in values]
     time = [value.get_time() for value in values]
     print(temp, hum, time)
     t, h = ('10','40')

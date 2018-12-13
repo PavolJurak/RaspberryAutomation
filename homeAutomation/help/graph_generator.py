@@ -10,6 +10,7 @@ class GraphTemp:
         self.y = y
 
         # plotting the points
+        plt.plot_date(self.x, self.y)
         plt.plot(self.x, self.y)
 
         # naming the x axis
@@ -35,6 +36,7 @@ class GraphTemp:
         self.y = y
 
         # plotting the points
+        plt.plot_date(self.x, self.y)
         plt.plot(self.x, self.y)
 
         # naming the x axis
@@ -44,6 +46,7 @@ class GraphTemp:
 
         # giving a title to my graph
         plt.title('Graph of humidity!')
+        plt.gcf().autofmt_xdate()
         #plt.gcf().autofmt_xdate()
         # function to show the plot
         # plt.show()
